@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guia de Uso - Demo Tienda Arriendos (MallPlaza)</title>
+<style>
+body { font-family: Calibri, Arial, sans-serif; color: #1f2937; margin: 0; }
+.doc { max-width: 900px; margin: 40px auto; padding: 0 24px 60px; }
+h1 { font-size: 28px; margin: 24px 0 12px; }
+h2 { font-size: 22px; margin: 22px 0 10px; }
+h3 { font-size: 18px; margin: 18px 0 8px; }
+p { line-height: 1.55; margin: 8px 0; }
+ul, ol { margin: 6px 0 10px 22px; }
+li { margin: 4px 0; }
+code { background: #f3f4f6; padding: 1px 4px; border-radius: 4px; font-family: Consolas, monospace; }
+hr { border: 0; border-top: 1px solid #e5e7eb; margin: 24px 0; }
+figure { margin: 16px 0; }
+img.shot { width: 100%; height: auto; border: 1px solid #e5e7eb; border-radius: 8px; }
+figcaption { font-size: 12px; color: #6b7280; margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="doc">
+<h1>Guia de Uso - Demo Tienda Arriendos (MallPlaza)</h1>
+<p></p>
+<h2>1. Proposito del documento</h2>
+<p>Esta guia explica, paso a paso, como usar la web de la demo para completar los flujos principales: login de arrendatario, pago de alquileres, consulta por codigo de comercio y operaciones de back-office.</p>
+<p></p>
+<h2>2. Antes de empezar</h2>
+<ol>
+<li>Instala dependencias con <code>npm i</code>.</li>
+<li>Inicia el servidor con <code>npm run dev</code>.</li>
+<li>Abre la URL que entrega Vite (usualmente <code>http://localhost:5173</code>).</li>
+</ol>
+<p></p>
+<p>Nota: la demo consume recursos remotos de la pasarela Pay-me. Necesitas acceso a internet.</p>
+<p></p>
+<h2>3. Navegacion general</h2>
+<p>Al abrir la web veras tres accesos:</p>
+<ul>
+<li>Portal de Arrendatarios.</li>
+<li>Consulta de Cliente.</li>
+<li>Back-office.</li>
+</ul>
+<p></p>
+<p>El logo de MallPlaza (arriba) siempre devuelve al inicio.</p>
+<figure>
+  <img class="shot" src="docs/capturas/01-home.png" alt="Home - Seleccion de portales" />
+  <figcaption>Home - Seleccion de portales</figcaption>
+</figure>
+<p></p>
+<h2>4. Portal de Arrendatarios</h2>
+<h3>4.1 Ingresar al portal</h3>
+<ol>
+<li>En el inicio, haz clic en <code>Portal de Arrendatarios</code>.</li>
+<li>En la pantalla de login, ingresa cualquier correo y contrasena.</li>
+<li>Haz clic en <code>Ingresar</code>.</li>
+</ol>
+<figure>
+  <img class="shot" src="docs/capturas/02-login.png" alt="Portal Arrendatarios - Login" />
+  <figcaption>Portal Arrendatarios - Login</figcaption>
+</figure>
+<p></p>
+<h3>4.2 Entender el dashboard</h3>
+<p>En la parte superior veras:</p>
+<ul>
+<li>Total pendiente (incluye comision 2%).</li>
+<li>Proximo vencimiento.</li>
+<li>Cantidad de alquileres pagados.</li>
+</ul>
+<p></p>
+<p>En la tabla veras:</p>
+<ul>
+<li>Local, Periodo, Vencimiento, Monto y Estado.</li>
+<li>El boton <code>Pagar</code> aparece solo si hay saldo pendiente.</li>
+</ul>
+<figure>
+  <img class="shot" src="docs/capturas/03-dashboard.png" alt="Portal Arrendatarios - Dashboard" />
+  <figcaption>Portal Arrendatarios - Dashboard</figcaption>
+</figure>
+<p></p>
+<h3>4.3 Pagar un alquiler</h3>
+<ol>
+<li>En la tabla, elige un alquiler con estado <code>Pendiente</code> o <code>Vencido</code>.</li>
+<li>Haz clic en <code>Pagar</code>.</li>
+<li>Selecciona el monto a pagar:</li>
+</ol>
+<p>   - <code>Total</code> (monto + comision 2%).</p>
+<p>   - <code>Monto</code> (solo alquiler).</p>
+<p>   - <code>Comision</code> (solo comision).</p>
+<ol>
+<li>Selecciona el metodo:</li>
+</ol>
+<p>   - Tarjeta.</p>
+<p>   - Yape.</p>
+<p>   - Transferencia bancaria.</p>
+<figure>
+  <img class="shot" src="docs/capturas/04-pago-metodo.png" alt="Pago - Seleccion de metodo" />
+  <figcaption>Pago - Seleccion de metodo</figcaption>
+</figure>
+<ol>
+<li>Completa los datos de facturacion y pulsa <code>Continuar</code>.</li>
+<li>Se carga el checkout de Pay-me. Completa el pago.</li>
+<li>Al finalizar, veras la pantalla de exito con el ID de transaccion (si aplica) y el saldo restante.</li>
+</ol>
+<figure>
+  <img class="shot" src="docs/capturas/05-pago-billing.png" alt="Pago - Datos de facturacion" />
+  <figcaption>Pago - Datos de facturacion</figcaption>
+</figure>
+<figure>
+  <img class="shot" src="docs/capturas/06-pago-checkout.png" alt="Pago - Checkout Pay-me" />
+  <figcaption>Pago - Checkout Pay-me</figcaption>
+</figure>
+<figure>
+  <img class="shot" src="docs/capturas/07-pago-exito.png" alt="Pago - Exito" />
+  <figcaption>Pago - Exito</figcaption>
+</figure>
+<p></p>
+<h3>4.4 Que cambia despues del pago</h3>
+<ul>
+<li>El estado del alquiler se actualiza a <code>Pagado</code> o queda <code>Pendiente</code> si fue un pago parcial.</li>
+<li>Los estados se recalculan automaticamente segun la fecha de vencimiento (Pendiente/Vencido).</li>
+<li>Se guarda en <code>localStorage</code> en la clave compartida <code>mallplaza_backoffice_payments_v1</code>.</li>
+</ul>
+<p></p>
+<h2>5. Consulta de Cliente</h2>
+<h3>5.1 Buscar por codigo de comercio</h3>
+<ol>
+<li>En el inicio, haz clic en <code>Consulta de Cliente</code>.</li>
+<li>Ingresa un codigo de comercio y pulsa <code>Buscar</code>.</li>
+</ol>
+<p></p>
+<p>Codigos de prueba:</p>
+<ul>
+<li><code>COM-001</code></li>
+<li><code>COM-002</code></li>
+<li><code>COM-003</code></li>
+</ul>
+<figure>
+  <img class="shot" src="docs/capturas/08-cliente-busqueda.png" alt="Consulta de cliente - Busqueda" />
+  <figcaption>Consulta de cliente - Busqueda</figcaption>
+</figure>
+<p></p>
+<h3>5.2 Ver resultados y pagar</h3>
+<ol>
+<li>Se muestra el negocio y el total pendiente.</li>
+<li>Revisa el historial de alquileres.</li>
+<li>Si hay saldo, haz clic en <code>Pagar</code> y sigue el mismo flujo de pago del Portal de Arrendatarios.</li>
+</ol>
+<figure>
+  <img class="shot" src="docs/capturas/09-cliente-resultados.png" alt="Consulta de cliente - Resultados" />
+  <figcaption>Consulta de cliente - Resultados</figcaption>
+</figure>
+<p></p>
+<h3>5.3 Persistencia</h3>
+<p>Los datos se guardan en <code>localStorage</code> y se comparten con Back-office:</p>
+<ul>
+<li><code>mallplaza_backoffice_payments_v1</code> (alquileres y pagos)</li>
+<li><code>mallplaza_backoffice_locals_v1</code> (locales)</li>
+</ul>
+<p></p>
+<h2>6. Back-office</h2>
+<h3>6.1 Gestion de Locales</h3>
+<ol>
+<li>En el inicio, haz clic en <code>Back-office</code>.</li>
+<li>En la pestaña <code>Gestion de Locales</code> puedes:</li>
+</ol>
+<p>   - Buscar por codigo, negocio o comercio.</p>
+<p>   - Filtrar por estado (Activo/Inactivo).</p>
+<p>   - Agregar un local con <code>Agregar Local</code>.</p>
+<p>   - Eliminar un local (con confirmacion).</p>
+<p></p>
+<p>Campos al agregar local:</p>
+<ul>
+<li>Codigo del local.</li>
+<li>Codigo de comercio.</li>
+<li>Nombre del negocio.</li>
+<li>Area (m2).</li>
+<li>Alquiler mensual.</li>
+<li>Estado.</li>
+</ul>
+<p></p>
+<p>Nota: el boton <code>Editar</code> esta visible, pero no tiene logica implementada.</p>
+<figure>
+  <img class="shot" src="docs/capturas/10-backoffice-locales.png" alt="Back-office - Gestion de locales" />
+  <figcaption>Back-office - Gestion de locales</figcaption>
+</figure>
+<p></p>
+<h3>6.2 Gestion de Alquileres</h3>
+<ol>
+<li>Cambia a la pestaña <code>Gestion de Alquileres</code>.</li>
+<li>Usa el buscador y filtros por estado, periodo y monto.</li>
+<li>Para crear cobros, haz clic en <code>Generar Cobros</code>.</li>
+</ol>
+<figure>
+  <img class="shot" src="docs/capturas/11-backoffice-alquileres.png" alt="Back-office - Gestion de alquileres" />
+  <figcaption>Back-office - Gestion de alquileres</figcaption>
+</figure>
+<p></p>
+<p>#### Generar Cobros</p>
+<ol>
+<li>Ingresa Periodo y Fecha de vencimiento.</li>
+<li>Selecciona uno o varios locales activos.</li>
+<li>Confirma con <code>Generar Cobros</code>.</li>
+</ol>
+<p>Si ya existe un cobro para el mismo local y periodo, se omite automaticamente.</p>
+<figure>
+  <img class="shot" src="docs/capturas/12-backoffice-generar.png" alt="Back-office - Generar cobros" />
+  <figcaption>Back-office - Generar cobros</figcaption>
+</figure>
+<p></p>
+<p>#### Validar Pago Manual</p>
+<ol>
+<li>En un alquiler pendiente, haz clic en <code>Validar Pago</code>.</li>
+<li>Completa los campos requeridos:</li>
+</ol>
+<p>   - Codigo de comercio (demo)</p>
+<p>   - Operation Number</p>
+<p>   - Transaction ID</p>
+<p>   - Token (Bearer)</p>
+<p>   - ALG-API-VERSION</p>
+<p>   - Metodo de pago</p>
+<p>   - Fecha de pago</p>
+<p>   - Referencia</p>
+<ol>
+<li>Haz clic en <code>Validar Pago</code>.</li>
+<li>El alquiler pasa a <code>Pagado</code> y se registra historial.</li>
+</ol>
+<p></p>
+<p>#### Ver Historial de Pago</p>
+<ol>
+<li>En un alquiler pagado, haz clic en el icono de historial.</li>
+<li>Se muestran los registros con los datos de validacion.</li>
+</ol>
+<p></p>
+<h3>6.3 Persistencia Back-office</h3>
+<ul>
+<li>Locales en <code>localStorage</code>: <code>mallplaza_backoffice_locals_v1</code>.</li>
+<li>Pagos en <code>localStorage</code>: <code>mallplaza_backoffice_payments_v1</code>.</li>
+</ul>
+<p></p>
+<h2>7. Reiniciar la demo</h2>
+<p>Para limpiar los datos:</p>
+<ol>
+<li>Abre DevTools del navegador.</li>
+<li>Application &gt; Local Storage &gt; elimina las claves <code>mallplaza_backoffice_*</code>.</li>
+<li>Alternativa rapida: ejecuta <code>localStorage.clear()</code> en la consola.</li>
+</ol>
+<p></p>
+<h2>8. Solucion de problemas</h2>
+<ul>
+<li>Si la pasarela no carga, verifica tu conexion a internet.</li>
+<li>Si el pago no avanza, recarga la pagina y repite el flujo.</li>
+<li>Si ves datos antiguos, limpia <code>localStorage</code>.</li>
+</ul>
+<p></p>
+<h2>9. Limitaciones conocidas</h2>
+<ul>
+<li>Login sin autenticacion real.</li>
+<li>Sin backend; toda la data es local.</li>
+<li>Edicion de locales no implementada.</li>
+<li>Pagos dependen de red y sandbox de Pay-me.</li>
+</ul>
+</div>
+</body>
+</html>

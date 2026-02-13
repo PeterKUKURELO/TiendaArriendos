@@ -1,0 +1,5 @@
+<svg width="220" height="48" viewBox="0 0 220 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="10" fill="#E91E63"/>
+  <path d="M12 33V15H16.8L24 25.5L31.2 15H36V33H31.8V22.2L24 33L16.2 22.2V33H12Z" fill="white"/>
+  <text x="58" y="31" fill="#111827" font-family="Arial, sans-serif" font-size="24" font-weight="700">MallPlaza</text>
+</svg>

@@ -1,0 +1,166 @@
+{\\rtf1\\ansi\\deff0{\\fonttbl{\\f0 Calibri;}}
+\fs24
+\fs36\b Guia de Uso - Demo Tienda Arriendos (MallPlaza) \b0\fs24\par
+\par
+\fs28\b 1. Proposito del documento \b0\fs24\par
+Esta guia explica, paso a paso, como usar la web de la demo para completar los flujos principales: login de arrendatario, pago de alquileres, consulta por codigo de comercio y operaciones de back-office. \par
+\par
+\fs28\b 2. Antes de empezar \b0\fs24\par
+1. Instala dependencias con `npm i`. \par
+2. Inicia el servidor con `npm run dev`. \par
+3. Abre la URL que entrega Vite (usualmente `http://localhost:5173`). \par
+\par
+Nota: la demo consume recursos remotos de la pasarela Pay-me. Necesitas acceso a internet. \par
+\par
+\fs28\b 3. Navegacion general \b0\fs24\par
+Al abrir la web veras tres accesos: \par
+\pard\li720\fi-360 - Portal de Arrendatarios. \par\pard
+\pard\li720\fi-360 - Consulta de Cliente. \par\pard
+\pard\li720\fi-360 - Back-office. \par\pard
+\par
+El logo de MallPlaza (arriba) siempre devuelve al inicio. \par
+\par
+\fs28\b 4. Portal de Arrendatarios \b0\fs24\par
+\fs24\b 4.1 Ingresar al portal \b0\fs24\par
+1. En el inicio, haz clic en `Portal de Arrendatarios`. \par
+2. En la pantalla de login, ingresa cualquier correo y contrasena. \par
+3. Haz clic en `Ingresar`. \par
+\par
+\fs24\b 4.2 Entender el dashboard \b0\fs24\par
+En la parte superior veras: \par
+\pard\li720\fi-360 - Total pendiente (incluye comision 2%). \par\pard
+\pard\li720\fi-360 - Proximo vencimiento. \par\pard
+\pard\li720\fi-360 - Cantidad de alquileres pagados. \par\pard
+\par
+En la tabla veras: \par
+\pard\li720\fi-360 - Local, Periodo, Vencimiento, Monto y Estado. \par\pard
+\pard\li720\fi-360 - El boton `Pagar` aparece solo si hay saldo pendiente. \par\pard
+\par
+\fs24\b 4.3 Pagar un alquiler \b0\fs24\par
+1. En la tabla, elige un alquiler con estado `Pendiente` o `Vencido`. \par
+2. Haz clic en `Pagar`. \par
+3. Selecciona el monto a pagar: \par
+   - `Total` (monto + comision 2%). \par
+   - `Monto` (solo alquiler). \par
+   - `Comision` (solo comision). \par
+4. Selecciona el metodo: \par
+   - Tarjeta. \par
+   - Yape. \par
+   - Transferencia bancaria. \par
+5. Completa los datos de facturacion y pulsa `Continuar`. \par
+6. Se carga el checkout de Pay-me. Completa el pago. \par
+7. Al finalizar, veras la pantalla de exito con el ID de transaccion (si aplica) y el saldo restante. \par
+\par
+\fs24\b 4.4 Que cambia despues del pago \b0\fs24\par
+\pard\li720\fi-360 - El estado del alquiler se actualiza a `Pagado` o queda `Pendiente` si fue un pago parcial. \par\pard
+\pard\li720\fi-360 - Se guarda en `localStorage` con la clave `mallplaza_dashboard_rentals_v1`. \par\pard
+\par
+\fs28\b 5. Consulta de Cliente \b0\fs24\par
+\fs24\b 5.1 Buscar por codigo de comercio \b0\fs24\par
+1. En el inicio, haz clic en `Consulta de Cliente`. \par
+2. Ingresa un codigo de comercio y pulsa `Buscar`. \par
+\par
+Codigos de prueba: \par
+\pard\li720\fi-360 - `COM-001` \par\pard
+\pard\li720\fi-360 - `COM-002` \par\pard
+\pard\li720\fi-360 - `COM-003` \par\pard
+\par
+\fs24\b 5.2 Ver resultados y pagar \b0\fs24\par
+1. Se muestra el negocio y el total pendiente. \par
+2. Revisa el historial de alquileres. \par
+3. Si hay saldo, haz clic en `Pagar` y sigue el mismo flujo de pago del Portal de Arrendatarios. \par
+\par
+\fs24\b 5.3 Persistencia \b0\fs24\par
+Los datos se guardan por codigo en `localStorage`: \par
+\pard\li720\fi-360 - `mallplaza_client_rentals_COM-001` \par\pard
+\pard\li720\fi-360 - `mallplaza_client_rentals_COM-002` \par\pard
+\pard\li720\fi-360 - `mallplaza_client_rentals_COM-003` \par\pard
+\par
+\fs28\b 6. Back-office \b0\fs24\par
+\fs24\b 6.1 Gestion de Locales \b0\fs24\par
+1. En el inicio, haz clic en `Back-office`. \par
+2. En la pestaña `Gestion de Locales` puedes: \par
+   - Buscar por codigo, negocio o comercio. \par
+   - Filtrar por estado (Activo/Inactivo). \par
+   - Agregar un local con `Agregar Local`. \par
+   - Eliminar un local (con confirmacion). \par
+\par
+Campos al agregar local: \par
+\pard\li720\fi-360 - Codigo del local. \par\pard
+\pard\li720\fi-360 - Codigo de comercio. \par\pard
+\pard\li720\fi-360 - Nombre del negocio. \par\pard
+\pard\li720\fi-360 - Area (m2). \par\pard
+\pard\li720\fi-360 - Alquiler mensual. \par\pard
+\pard\li720\fi-360 - Estado. \par\pard
+\par
+Nota: el boton `Editar` esta visible, pero no tiene logica implementada. \par
+\par
+\fs24\b 6.2 Gestion de Alquileres \b0\fs24\par
+1. Cambia a la pestaña `Gestion de Alquileres`. \par
+2. Usa el buscador y filtros por estado, periodo y monto. \par
+3. Para crear cobros, haz clic en `Generar Cobros`. \par
+\par
+#### Generar Cobros \par
+1. Ingresa Periodo y Fecha de vencimiento. \par
+2. Selecciona uno o varios locales activos. \par
+3. Confirma con `Generar Cobros`. \par
+\par
+#### Validar Pago Manual \par
+1. En un alquiler pendiente, haz clic en `Validar Pago`. \par
+2. Completa los campos requeridos: \par
+   - Merchant Code \par
+   - Operation Number \par
+   - Transaction ID \par
+   - Token (Bearer) \par
+   - ALG-API-VERSION \par
+   - Metodo de pago \par
+   - Fecha de pago \par
+   - Referencia \par
+3. Haz clic en `Validar Pago`. \par
+4. El alquiler pasa a `Pagado` y se registra historial. \par
+\par
+#### Ver Historial de Pago \par
+1. En un alquiler pagado, haz clic en el icono de historial. \par
+2. Se muestran los registros con los datos de validacion. \par
+\par
+\fs24\b 6.3 Persistencia Back-office \b0\fs24\par
+\pard\li720\fi-360 - Locales en `localStorage`: `mallplaza_backoffice_locals_v1`. \par\pard
+\pard\li720\fi-360 - Pagos en `localStorage`: `mallplaza_backoffice_payments_v1`. \par\pard
+\par
+\fs28\b 7. Capturas sugeridas \b0\fs24\par
+Guarda las capturas en `docs/capturas/` con estos nombres: \par
+\pard\li720\fi-360 - `01-home.png` \par\pard
+\pard\li720\fi-360 - `02-login.png` \par\pard
+\pard\li720\fi-360 - `03-dashboard.png` \par\pard
+\pard\li720\fi-360 - `04-pago-metodo.png` \par\pard
+\pard\li720\fi-360 - `05-pago-billing.png` \par\pard
+\pard\li720\fi-360 - `06-pago-checkout.png` \par\pard
+\pard\li720\fi-360 - `07-pago-exito.png` \par\pard
+\pard\li720\fi-360 - `08-cliente-busqueda.png` \par\pard
+\pard\li720\fi-360 - `09-cliente-resultados.png` \par\pard
+\pard\li720\fi-360 - `10-backoffice-locales.png` \par\pard
+\pard\li720\fi-360 - `11-backoffice-alquileres.png` \par\pard
+\pard\li720\fi-360 - `12-backoffice-generar.png` \par\pard
+\pard\li720\fi-360 - `13-backoffice-validar.png` \par\pard
+\pard\li720\fi-360 - `14-backoffice-historial.png` \par\pard
+\par
+Luego agrega las imagenes en el documento, por ejemplo: \par
+`![Home](docs/capturas/01-home.png)` \par
+\par
+\fs28\b 8. Reiniciar la demo \b0\fs24\par
+Para limpiar los datos: \par
+1. Abre DevTools del navegador. \par
+2. Application > Local Storage > elimina las claves `mallplaza_*`. \par
+3. Alternativa rapida: ejecuta `localStorage.clear()` en la consola. \par
+\par
+\fs28\b 9. Solucion de problemas \b0\fs24\par
+\pard\li720\fi-360 - Si la pasarela no carga, verifica tu conexion a internet. \par\pard
+\pard\li720\fi-360 - Si el pago no avanza, recarga la pagina y repite el flujo. \par\pard
+\pard\li720\fi-360 - Si ves datos antiguos, limpia `localStorage`. \par\pard
+\par
+\fs28\b 10. Limitaciones conocidas \b0\fs24\par
+\pard\li720\fi-360 - Login sin autenticacion real. \par\pard
+\pard\li720\fi-360 - Sin backend; toda la data es local. \par\pard
+\pard\li720\fi-360 - Edicion de locales no implementada. \par\pard
+\pard\li720\fi-360 - Pagos dependen de red y sandbox de Pay-me. \par\pard
+}
