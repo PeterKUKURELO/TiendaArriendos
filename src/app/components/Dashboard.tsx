@@ -69,7 +69,7 @@ export function Dashboard({ onBack }: DashboardProps) {
       <div className="relative h-[180px] sm:h-[250px] w-full overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1718201525336-095240724352?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBzaG9wcGluZyUyMGNlbnRlciUyMGFyY2hpdGVjdHVyZXxlbnwxfHx8fDE3NzA4MzE0Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+            src="https://www.accep.org.pe/wp-content/uploads/2025/03/mallplaza-peru.png"
             alt="Shopping Mall"
             className="w-full h-full object-cover"
           />
